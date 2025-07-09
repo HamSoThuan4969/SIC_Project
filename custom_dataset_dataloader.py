@@ -69,7 +69,7 @@ class UTKDataset(Dataset):
 
 
 # Utilize the UTKDataset class to instantiate dataset objects for the training, validation, and test sets.
-root_dir = '/home/deep/projects/Mousavi/Facial_Age_estimation_PyTorch/dataset/utkcropped'
+root_dir = 'C:/Users/kuroba/OneDrive - TRƯỜNG ĐẠI HỌC MỞ TP.HCM/Documents/Kan_project/SIC/DU DOAN TUI/Facial_Age_estimation_PyTorch/dataset/utkcropped'
 csv_file_train = './csv_dataset/train_set.csv'
 csv_file_valid = './csv_dataset/valid_set.csv'
 csv_file_test = './csv_dataset/test_set.csv'

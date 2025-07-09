@@ -5,9 +5,8 @@ from PIL import Image
 
 
 # Replace with the actual path to your UTK dataset images folder
-dataset_folder = '/home/ebrahim/Python_projects/projects/dataset/UTKface/'
 
-
+dataset_folder = 'C:/Users/kuroba/OneDrive - TRƯỜNG ĐẠI HỌC MỞ TP.HCM/Documents/projeck/SIC/DU DOAN TUI/Facial_Age_estimation_PyTorch/csv_dataset/utkface_dataset.csv'
 def show_random_samples(num_samples=9):
     image_files = os.listdir(dataset_folder)
     selected_image_files = random.sample(image_files, num_samples)
@@ -31,5 +30,5 @@ def show_random_samples(num_samples=9):
     plt.show()
 
 
-# Call the function to display random samples
+# Call the function to display random samples - đã sửa
 show_random_samples()
