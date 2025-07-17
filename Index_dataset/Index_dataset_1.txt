@@ -1,0 +1,18 @@
+Dataset Head:
+                     image_name  age ethnicity gender
+0  10_0_0_20161220222308131.jpg   10     White   Male
+1  10_0_0_20170103200329407.jpg   10     White   Male
+2  10_0_0_20170103200522151.jpg   10     White   Male
+3  10_0_0_20170103233459275.jpg   10     White   Male
+4  10_0_0_20170104013211746.jpg   10     White   Male
+
+Describe:
+               age
+count  9829.000000
+mean     27.037847
+std      23.012976
+min       1.000000
+25%       5.000000
+50%      23.000000
+75%      45.000000
+max      84.000000

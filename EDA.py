@@ -3,11 +3,30 @@ import matplotlib.pyplot as plt
 import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
+import os
+
 
 from sklearn.model_selection import train_test_split
 
+
+# Tạo thư mục nếu chưa có
+output_dir = 'Index_dataset'
+os.makedirs(output_dir, exist_ok=True)
+
+# Hàm lấy số thứ tự chưa tồn tại
+def get_next_index(prefix='Index_dataset', ext='png'):
+    existing = [f for f in os.listdir(output_dir) if f.startswith(prefix) and f.endswith(f'.{ext}')]
+    indices = [int(f.replace(prefix + '_', '').replace(f'.{ext}', '')) for f in existing if f.replace(prefix + '_', '').replace(f'.{ext}', '').isdigit()]
+    return max(indices, default=0) + 1
+
 df = pd.read_csv('csv_dataset/utkface_dataset.csv')
 print(df.head())
+index = get_next_index(ext='txt')
+with open(f'{output_dir}/Index_dataset_{index}.txt', 'w') as f:
+    f.write("Dataset Head:\n")
+    f.write(df.head().to_string())
+    f.write("\n\nDescribe:\n")
+    f.write(df.describe().to_string())
 
 # Plot histogram for `age, ethnicity, and gender`
 def plot_histograms_with_names(dataframe):
@@ -26,6 +45,9 @@ def plot_histograms_with_names(dataframe):
         ax.set_title(f'Histogram of {column}')
         
     plt.tight_layout()
+    index = get_next_index()
+    plt.savefig(f'{output_dir}/Index_dataset_{index}.png')
+
     plt.show()
 
 # Example usage: 
@@ -34,6 +56,9 @@ plot_histograms_with_names(df)
 # 1. Calculate the cross-tabulation of gender and ethnicity using the pandas.crosstab() function.
 cross_tab = pd.crosstab(df['gender'], df['ethnicity'])
 print(cross_tab)
+index = get_next_index(ext='csv')
+cross_tab.to_csv(f'{output_dir}/Index_dataset_{index}.csv')
+
 
 # 2. Create violin plots and box plots for age, separately for men and women.
 men_df = df[df['gender'] == 'Male']
@@ -42,6 +67,9 @@ women_df = df[df['gender'] == 'Female']
 plt.figure(figsize=(12, 8))
 
 plt.subplot(1, 2, 1)
+index = get_next_index()
+plt.savefig(f'{output_dir}/Index_dataset_{index}.png')
+
 plt.violinplot(men_df['age'], vert=False)
 plt.boxplot(men_df['age'], vert=False)
 plt.xlabel('Age')
@@ -91,6 +119,9 @@ plt.boxplot(White_df['age'], vert=False)
 plt.boxplot(White_df['age'], vert=False)
 plt.xlabel('Age', color='b')
 plt.title('White ethnicity plot', color='r')
+index = get_next_index()
+plt.savefig(f'{output_dir}/Index_dataset_{index}.png')
+
 
 # 6. Plot histograms for age in the training, validation, and test sets.
 df_train, df_test = train_test_split(df, train_size=0.8, random_state=42)
@@ -102,3 +133,6 @@ fig, axes = plt.subplots(1, 3, figsize=(15, 5))
 axes[0].hist(df_train.age, bins=len(df_train.age.unique())); axes[0].set_title('Train')
 axes[1].hist(df_valid.age, bins=len(df_valid.age.unique())); axes[1].set_title('Validation')
 axes[2].hist(df_test.age, bins=len(df_test.age.unique())); axes[2].set_title('Test')
+index = get_next_index()
+plt.savefig(f'{output_dir}/Index_dataset_{index}.png')
+

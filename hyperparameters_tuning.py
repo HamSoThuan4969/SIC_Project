@@ -66,20 +66,20 @@ for lr in [0.0005, 0.0008, 0.001]:
         small_grid_list.append([lr, wd, loss_train])
 
 # Define the table headers and create the PrettyTable object
-# headers = ['LR', 'WD', 'Loss']
-# table = PrettyTable(headers)
+headers = ['LR', 'WD', 'Loss']
+table = PrettyTable(headers)
 
 # # Add rows to the table
-# for rec in small_grid_list:
-#     table.add_row(rec)
-# print(table)
+for rec in small_grid_list:
+    table.add_row(rec)
+print(table)
 
 # # Write the table data to a CSV file
-# with open('H-parameters.csv', 'w', newline='') as csvfile:
-#     writer = csv.writer(csvfile)
+with open('H-parameters.csv', 'w', newline='') as csvfile:
+    writer = csv.writer(csvfile)
 
-#     # Write the table data row by row
-#     for row in table.get_string().split('\n'):
-#         writer.writerow(row.split())
+    # Write the table data row by row
+    for row in table.get_string().split('\n'):
+        writer.writerow(row.split())
 
-# print("Data has been written to 'H-parameters.csv' file.")
+print("Data has been written to 'H-parameters.csv' file.")
