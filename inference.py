@@ -34,7 +34,7 @@ def inference(model, image_path, output_path):
         # Save the output image
         output_image.save(output_path)
 
-path = "/home/deep/projects/Mousavi/Facial_Age_estimation_PyTorch/checkpoints/"
+path = "C:/Users/kuroba/OneDrive - TRƯỜNG ĐẠI HỌC MỞ TP.HCM/Documents/Kan_project/SIC/DU DOAN TUI/Facial_Age_estimation_PyTorch/checkpoints"
 checkpoint_files = glob.glob(os.path.join(path, 'epoch-*-loss_valid-*.pt'))
 latest_checkpoint = max(checkpoint_files, key=os.path.getctime)
 
@@ -44,4 +44,5 @@ model.load_state_dict(torch.load(latest_checkpoint))
 
 image_path_test = config['image_path_test'] # Path to the input image
 output_path_test = config['output_path_test']  # Path to save the output image
+
 inference(model, image_path_test, output_path_test)
